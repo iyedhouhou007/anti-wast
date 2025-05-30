@@ -1,0 +1,123 @@
+.search-bar {
+  position: relative;
+}
+
+.search-bar-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar-input-container {
+  position: relative;
+  flex: 1;
+}
+
+.search-bar-input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+.search-bar-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.search-bar-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.625rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  color: #9ca3af;
+}
+
+.search-bar-filter-button {
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.search-bar-filter-button:hover {
+  color: #374151;
+}
+
+.search-bar-filter-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.search-bar-submit {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.search-bar-submit:hover {
+  background-color: #2563eb;
+}
+
+.search-bar-filters {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.search-bar-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.search-bar-filter-group {
+  margin-bottom: 1rem;
+}
+
+.search-bar-filter-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.search-bar-select {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background-color: white;
+}
+
+.search-bar-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.search-bar-range {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.search-bar-range-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}

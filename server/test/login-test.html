@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Test</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      input {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      button {
+        background: #f59e0b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+      }
+      button:hover {
+        background: #d97706;
+      }
+      #result {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 4px;
+      }
+      .success {
+        background: #def7ec;
+        color: #03543e;
+      }
+      .error {
+        background: #fde8e8;
+        color: #9b1c1c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Get Test Token</h1>
+      <form id="loginForm">
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" required />
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password" required />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const resultDiv = document.getElementById("result");
+
+          try {
+            const response = await fetch(
+              "http://localhost:5000/api/auth/login",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+              }
+            );
+
+            const data = await response.json();
+            console.log(data.data.token); // Log the response data for debugging
+
+            if (response.ok) {
+              resultDiv.className = "success";
+              resultDiv.innerHTML = `
+                        <h3>Login Successful!</h3>
+                        <p>Your token (copy this):</p>
+                        <textarea style="width: 100%; height: 100px; margin-top: 10px;">${data.data.token}</textarea>
+                    `;
+            } else {
+              throw new Error(data.message || "Login failed");
+            }
+          } catch (error) {
+            resultDiv.className = "error";
+            resultDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+          }
+        });
+    </script>
+  </body>
+</html>

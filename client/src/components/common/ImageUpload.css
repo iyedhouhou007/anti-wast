@@ -1,0 +1,57 @@
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.image-upload-input {
+  display: none;
+}
+
+.image-upload-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.image-upload-item {
+  position: relative;
+}
+
+.image-upload-preview {
+  height: 6rem;
+  width: 6rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.image-upload-remove {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  background-color: #ef4444;
+  color: white;
+  border-radius: 9999px;
+  padding: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.image-upload-remove:hover {
+  background-color: #dc2626;
+}
+
+.image-upload-remove-icon {
+  height: 1rem;
+  width: 1rem;
+}
+
+.image-upload-error {
+  font-size: 0.875rem;
+  color: #dc2626;
+}
+
+.image-upload-help {
+  font-size: 0.875rem;
+  color: #6b7280;
+}

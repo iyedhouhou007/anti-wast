@@ -1,0 +1,19 @@
+.bread-listing-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.bread-listing-loading,
+.bread-listing-error,
+.bread-listing-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #4b5563;
+  font-size: 1rem;
+}
+
+.bread-listing-error {
+  color: #b91c1c;
+}

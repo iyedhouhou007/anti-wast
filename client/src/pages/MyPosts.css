@@ -1,0 +1,57 @@
+.my-posts-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.my-posts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.my-posts-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.my-posts-filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.my-posts-filter {
+  padding: 0.5em 1em;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  background: #fff;
+  color: #333;
+}
+
+.my-posts-loading,
+.my-posts-empty {
+  text-align: center;
+  font-size: 1.2em;
+  color: #888;
+  margin-top: 3rem;
+}
+
+.my-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.my-posts-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.06);
+  padding: 1.5rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+}

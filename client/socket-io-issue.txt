@@ -1,0 +1,56 @@
+Socket.IO/WebSocket Connection Issue: Backend Action Required
+============================================================
+
+Symptoms (Frontend Console):
+----------------------------
+- Socket not initialized
+- WebSocket connection to 'ws://localhost:5000/socket.io/...' failed: WebSocket is closed before the connection is established.
+- GET http://localhost:5000/socket.io/... 400 (Bad Request)
+
+What's Happening:
+-----------------
+- The frontend is trying to connect to the backend's Socket.IO server at localhost:5000, but the connection is being rejected or not established.
+- As a result, real-time features (chat, notifications, live updates) are not working.
+
+What the Backend Needs to Check & Fix:
+--------------------------------------
+1. Is the backend server running and listening on port 5000?
+   - The frontend expects the backend to be available at http://localhost:5000.
+
+2. Is Socket.IO properly initialized and listening?
+   - Example (Node.js/Express):
+     const server = require('http').createServer(app);
+     const io = require('socket.io')(server, {
+       cors: {
+         origin: "http://localhost:5173",
+         methods: ["GET", "POST"]
+       }
+     });
+     server.listen(5000, () => console.log('Server running on port 5000'));
+
+3. Is CORS configured to allow connections from the frontend?
+   - The backend must allow CORS from http://localhost:5173 (the frontend dev server).
+
+4. Are the Socket.IO versions compatible?
+   - Both frontend and backend should use compatible major versions (e.g., v4.x on both).
+
+5. Is authentication required for socket connections?
+   - If the backend expects a token or cookie, make sure the frontend is sending it and the backend is validating it correctly.
+
+6. Check backend logs for handshake errors or CORS issues.
+   - There may be more detailed error messages in the backend console.
+
+Why This Matters:
+-----------------
+- Until this is fixed, users will not be able to use real-time features like chat or notifications.
+- The rest of the app (static pages, HTTP requests) will still work.
+
+What to Provide to the Backend Developer:
+-----------------------------------------
+- This summary.
+- The exact error messages from the browser console.
+- The frontend is running on localhost:5173 and expects to connect to the backend at localhost:5000.
+
+If your backend partner needs more details, they can ask for:
+- The frontend's Socket.IO client initialization code.
+- The backend's Socket.IO and server setup code. 

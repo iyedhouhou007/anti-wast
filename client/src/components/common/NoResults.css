@@ -1,0 +1,28 @@
+.no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.no-results-icon {
+  margin: 0 auto;
+  height: 3rem;
+  width: 3rem;
+  color: #9ca3af;
+}
+
+.no-results-title {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.no-results-message {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.no-results-action {
+  margin-top: 1.5rem;
+}

@@ -1,0 +1,461 @@
+.bread-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+  border: 1px solid #f3f4f6;
+  min-width: 0;
+  width: 100%;
+  max-width: 370px;
+  margin: 0 auto;
+}
+
+.bread-card:hover {
+  box-shadow: 0 6px 24px 0 rgba(255, 106, 43, 0.12);
+  transform: translateY(-2px) scale(1.01);
+}
+
+.bread-card-image-wrapper {
+  width: 100%;
+  height: 180px;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bread-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: #f3f4f6;
+}
+
+.bread-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.25rem 1rem 1.25rem;
+}
+
+.bread-card-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.bread-card-price {
+  background: #ff6a2b;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.bread-card-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  background: #f3f4f6;
+  color: #6b7280;
+  text-transform: capitalize;
+}
+
+.bread-badge-fresh {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.bread-badge-day-old {
+  background: #fef9c3;
+  color: #ca8a04;
+}
+.bread-badge-stale {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.bread-badge-giveaway {
+  background: #4caf50;
+  color: #fff;
+}
+.bread-badge-request {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.bread-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0.25rem 0 0.25rem 0;
+  color: #222;
+  line-height: 1.2;
+}
+
+.bread-card-description {
+  color: #4b5563;
+  font-size: 0.97rem;
+  margin-bottom: 0.5rem;
+  min-height: 2.2em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  padding-right: 80px;
+  line-clamp: 2;
+}
+
+.bread-card-view-more {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding-left: 1rem;
+  background: linear-gradient(to right, transparent, white 20%);
+  color: #2563eb;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-size: 0.97rem;
+  display: flex;
+  align-items: center;
+}
+
+.bread-card-view-more:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.bread-card-qty-loc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: #6b7280;
+}
+
+.bread-card-quantity {
+  font-weight: 500;
+}
+
+.bread-card-address {
+  font-size: 0.93rem;
+  color: #2563eb;
+  margin-left: 0.5rem;
+  font-weight: 500;
+}
+
+.bread-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.bread-card-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bread-card-avatar-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bread-card-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.default-avatar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.default-avatar-wrapper svg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.bread-card-username {
+  font-size: 0.97rem;
+  font-weight: 500;
+  color: #222;
+}
+
+.bread-card-date {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.bread-card-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.bread-card-error {
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #991b1b;
+}
+
+.bread-card-error .material-symbols-outlined {
+  color: #dc2626;
+  font-size: 1.25rem;
+}
+
+.bread-card-error p {
+  margin: 0;
+}
+
+.bread-card-reserved {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.2rem;
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: fit-content;
+  cursor: not-allowed;
+  opacity: 0.9;
+  min-width: fit-content;
+  flex: 1;
+}
+
+.bread-card-reserved .material-symbols-outlined {
+  font-size: 1.2rem;
+  color: #64748b;
+  animation: lockBounce 0.3s ease-in-out;
+}
+
+@keyframes lockBounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bread-card-btn {
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1.5px solid transparent;
+  flex: 1;
+  min-width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  background: white;
+}
+
+.bread-card-btn .material-symbols-outlined {
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.bread-card-btn:hover .material-symbols-outlined {
+  transform: translateX(2px);
+}
+
+.bread-card-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #9ca3af;
+}
+
+.bread-card-btn:disabled .material-symbols-outlined {
+  transform: none;
+}
+
+.bread-card-btn-outline {
+  background: white;
+  border-color: #e2e8f0;
+  color: #64748b;
+}
+
+.bread-card-btn-outline:hover:not(:disabled) {
+  border-color: #ff6a2b;
+  color: #ff6a2b;
+  background: #fff5f0;
+  transform: translateY(-1px);
+}
+
+.bread-card-btn-primary {
+  background: #ff6a2b;
+  color: white;
+  border: none;
+}
+
+.bread-card-btn-primary:hover:not(:disabled) {
+  background: #ff8f5e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 106, 43, 0.2);
+}
+
+.bread-card-btn-danger {
+  background: white;
+  border-color: #fecaca;
+  color: #ef4444;
+}
+
+.bread-card-btn-danger:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #ef4444;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
+}
+
+.bread-card-btn-reserve {
+  background: #22c55e;
+  color: white;
+  border: none;
+}
+
+.bread-card-btn-reserve:hover:not(:disabled) {
+  background: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+}
+
+.bread-card-btn-cancel {
+  background: #ef4444;
+  color: white;
+  border: none;
+}
+
+.bread-card-btn-cancel:hover:not(:disabled) {
+  background: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+@media (max-width: 600px) {
+  .bread-card-content {
+    padding: 1rem 0.75rem 0.75rem 0.75rem;
+  }
+  .bread-card-title {
+    font-size: 1rem;
+  }
+  .bread-card-image-wrapper {
+    height: 120px;
+  }
+  .bread-card-avatar {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.bread-card-image-grid {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  height: 120px;
+  position: relative;
+}
+
+.bread-card-image-grid.grid-1 {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  height: 180px;
+}
+
+.bread-card-image-grid.grid-2 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  height: 120px;
+}
+
+.bread-card-image-grid.grid-4 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 120px;
+}
+
+.bread-card-image-grid.grid-6 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: 120px;
+}
+
+.bread-card-image-thumb {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.bread-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bread-card-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  z-index: 2;
+}

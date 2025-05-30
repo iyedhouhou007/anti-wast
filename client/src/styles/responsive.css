@@ -1,0 +1,166 @@
+/* Breakpoints */
+:root {
+  /* Mobile first approach */
+  --breakpoint-xs: 0px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+}
+
+/* Container widths */
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* Responsive utilities */
+.hide-xs {
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .hide-xs {
+    display: block;
+  }
+  .hide-sm {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .hide-sm {
+    display: block;
+  }
+  .hide-md {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .hide-md {
+    display: block;
+  }
+  .hide-lg {
+    display: none;
+  }
+}
+
+/* Responsive text */
+.text-responsive {
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .text-responsive {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .text-responsive {
+    font-size: 1.2rem;
+  }
+}
+
+/* Responsive spacing */
+.spacing-responsive {
+  padding: 1rem;
+  margin: 1rem;
+}
+
+@media (min-width: 768px) {
+  .spacing-responsive {
+    padding: 1.5rem;
+    margin: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .spacing-responsive {
+    padding: 2rem;
+    margin: 2rem;
+  }
+}
+
+/* Responsive grid */
+.grid-responsive {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 576px) {
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Responsive flex */
+.flex-responsive {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .flex-responsive {
+    flex-direction: row;
+  }
+}
+
+/* Responsive images */
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive navigation */
+.nav-responsive {
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .nav-responsive {
+    flex-direction: row;
+  }
+}

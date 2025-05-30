@@ -1,0 +1,189 @@
+.filter-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid #f1f5f9;
+}
+
+.filter-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #1e293b;
+  cursor: pointer;
+  padding-bottom: 1.25rem;
+}
+
+.filter-toggle-btn {
+  background: #fff5f0;
+  border: none;
+  border-radius: 12px;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff6a2b;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.filter-toggle-btn .material-symbols-outlined {
+  font-size: 1.4rem;
+  transition: transform 0.3s ease;
+}
+
+.filter-toggle-btn.open .material-symbols-outlined {
+  transform: rotate(180deg);
+}
+
+.filter-toggle-btn:hover {
+  background: #ff6a2b;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.filter-card-content.animated {
+  transition: all 0.3s ease;
+}
+
+.filter-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #1e293b;
+}
+
+.filter-header-title .material-symbols-outlined {
+  font-size: 1.4rem;
+  color: #ff6a2b;
+}
+
+.filter-card label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #64748b;
+}
+
+.filter-card label .material-symbols-outlined {
+  font-size: 1.2rem;
+  color: #ff6a2b;
+}
+
+.filter-card select {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  font-size: 0.95rem;
+  background: #f8fafc;
+  color: #1e293b;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+  padding-right: 2.5rem;
+}
+
+.filter-card select:hover {
+  border-color: #ff6a2b;
+  background-color: #fff5f0;
+}
+
+.filter-card select:focus {
+  outline: none;
+  border-color: #ff6a2b;
+  box-shadow: 0 0 0 3px rgba(255, 106, 43, 0.1);
+  background-color: white;
+}
+
+.filter-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.filter-btn {
+  padding: 0.7rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.filter-btn .material-symbols-outlined {
+  font-size: 1.2rem;
+}
+
+.filter-btn-outline {
+  background: white;
+  color: #ff6a2b;
+  border: 1.5px solid #ff6a2b;
+}
+
+.filter-btn-outline:hover {
+  background: #fff5f0;
+  transform: translateY(-1px);
+}
+
+.filter-btn-primary {
+  background: #ff6a2b;
+  color: white;
+  border: none;
+}
+
+.filter-btn-primary:hover {
+  background: #ff8f5e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 106, 43, 0.2);
+}
+
+@media (max-width: 600px) {
+  .filter-card {
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .filter-controls-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .filter-card-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .filter-btn {
+    width: 100%;
+  }
+}

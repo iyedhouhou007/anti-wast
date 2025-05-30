@@ -1,0 +1,39 @@
+@import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
+
+/* Custom base styles if needed */
+@layer base {
+  #root {
+    @apply flex flex-col w-full min-h-screen;
+  }
+
+  /* Optional: Keep logo animations if needed */
+  .logo {
+    @apply h-24 p-6;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  .logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+  }
+}
+
+/* Animation (keep only if using) */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}

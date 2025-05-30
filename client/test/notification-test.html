@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Notification System Test</title>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* Login Panel */
+      .login-panel {
+        padding: 20px;
+        background: #f9fafb;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+        margin-bottom: 20px;
+      }
+
+      /* Notifications Panel */
+      .notifications-panel {
+        display: none;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+      }
+
+      .notifications-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .notification-item {
+        padding: 15px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        background: white;
+        transition: background-color 0.2s;
+      }
+
+      .notification-item:hover {
+        background: #f9fafb;
+      }
+
+      .notification-item.unread {
+        background: #f0f9ff;
+        border-left: 4px solid #3b82f6;
+      }
+
+      .notification-content {
+        margin-bottom: 8px;
+      }
+
+      .notification-meta {
+        font-size: 12px;
+        color: #6b7280;
+      }
+
+      .notification-actions {
+        margin-top: 10px;
+      }
+
+      /* Utils */
+      .btn {
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: 1px solid #d1d5db;
+        background: white;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .btn:hover {
+        background: #f9fafb;
+      }
+
+      .btn-primary {
+        background: #3b82f6;
+        color: white;
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background: #2563eb;
+      }
+
+      .status {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 6px;
+      }
+
+      .status.success {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .status.error {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        margin-bottom: 10px;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Login Panel -->
+      <div class="login-panel">
+        <h3>Login</h3>
+        <input
+          type="text"
+          id="token"
+          placeholder="Enter JWT token"
+          style="width: 100%; margin-bottom: 10px"
+        />
+        <button onclick="connect()" id="connectBtn" class="btn btn-primary">
+          Connect
+        </button>
+        <button onclick="disconnect()" id="disconnectBtn" class="btn" disabled>
+          Disconnect
+        </button>
+        <div id="connectionStatus" class="status"></div>
+      </div>
+
+      <!-- Notifications Panel -->
+      <div id="notificationsPanel" class="notifications-panel">
+        <div class="notifications-header">
+          <h3>Notifications</h3>
+          <button onclick="markAllAsRead()" class="btn">
+            Mark All as Read
+          </button>
+        </div>
+        <div id="notificationsList"></div>
+      </div>
+    </div>
+
+    <script>
+      let socket;
+      let currentUser;
+
+      // Connect to WebSocket
+      async function connect() {
+        const token = document.getElementById("token").value;
+        if (!token) {
+          showStatus("Please enter a JWT token", "error");
+          return;
+        }
+
+        try {
+          // First verify the token by getting user info
+          const userResponse = await fetch(
+            "http://localhost:5000/api/user/me",
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+
+          if (!userResponse.ok) throw new Error("Invalid token");
+
+          const userData = await userResponse.json();
+          currentUser = userData.data.user;
+
+          // Connect socket
+          socket = io("http://localhost:5000", {
+            auth: { token },
+          });
+
+          setupSocketListeners();
+          setupUIForConnectedState();
+          loadNotifications();
+        } catch (error) {
+          showStatus(`Connection failed: ${error.message}`, "error");
+        }
+      }
+
+      function setupSocketListeners() {
+        socket.on("connect", () => {
+          showStatus("Connected successfully", "success");
+        });
+
+        socket.on("disconnect", () => {
+          showStatus("Disconnected from server", "error");
+          setupUIForDisconnectedState();
+        });
+
+        socket.on("notification:new", (notification) => {
+          console.log("New notification received:", notification);
+          addNotificationToUI(notification, true);
+        });
+
+        socket.on("notification:read", (data) => {
+          console.log("Notification read status:", data);
+          markNotificationReadInUI(data.notificationId);
+        });
+
+        socket.on("notification:allRead", () => {
+          console.log("All notifications marked as read");
+          markAllNotificationsReadInUI();
+        });
+
+        socket.on("error", (error) => {
+          showStatus(`Socket error: ${error.message}`, "error");
+        });
+      }
+
+      async function loadNotifications() {
+        try {
+          const response = await fetch(
+            "http://localhost:5000/api/notifications",
+            {
+              headers: {
+                Authorization: `Bearer ${
+                  document.getElementById("token").value
+                }`,
+              },
+            }
+          );
+
+          if (!response.ok) throw new Error("Failed to load notifications");
+
+          const data = await response.json();
+          const notifications = data.data.notifications || [];
+
+          // Clear existing notifications
+          document.getElementById("notificationsList").innerHTML = "";
+
+          // Add notifications to UI
+          notifications.forEach((notification) =>
+            addNotificationToUI(notification)
+          );
+        } catch (error) {
+          showStatus(`Error loading notifications: ${error.message}`, "error");
+        }
+      }
+
+      function addNotificationToUI(notification, isNew = false) {
+        const notificationsList = document.getElementById("notificationsList");
+        const notificationDiv = document.createElement("div");
+        notificationDiv.className = `notification-item ${
+          !notification.read ? "unread" : ""
+        }`;
+        notificationDiv.id = `notification-${notification._id}`;
+
+        notificationDiv.innerHTML = `
+          <div class="notification-content">${notification.message}</div>
+          <div class="notification-meta">
+            ${new Date(notification.createdAt).toLocaleString()}
+          </div>
+          ${
+            !notification.read
+              ? `<div class="notification-actions">
+                  <button onclick="markAsRead('${notification._id}')" class="btn">
+                    Mark as Read
+                  </button>
+                </div>`
+              : ""
+          }
+        `;
+
+        if (isNew) {
+          notificationsList.insertBefore(
+            notificationDiv,
+            notificationsList.firstChild
+          );
+        } else {
+          notificationsList.appendChild(notificationDiv);
+        }
+      }
+
+      async function markAsRead(notificationId) {
+        try {
+          const response = await fetch(
+            `http://localhost:5000/api/notifications/${notificationId}/mark-read`,
+            {
+              method: "PUT",
+              headers: {
+                Authorization: `Bearer ${
+                  document.getElementById("token").value
+                }`,
+              },
+            }
+          );
+
+          if (!response.ok)
+            throw new Error("Failed to mark notification as read");
+
+          markNotificationReadInUI(notificationId);
+        } catch (error) {
+          showStatus(
+            `Error marking notification as read: ${error.message}`,
+            "error"
+          );
+        }
+      }
+
+      async function markAllAsRead() {
+        try {
+          const response = await fetch(
+            "http://localhost:5000/api/notifications/mark-all-read",
+            {
+              method: "PUT",
+              headers: {
+                Authorization: `Bearer ${
+                  document.getElementById("token").value
+                }`,
+              },
+            }
+          );
+
+          if (!response.ok)
+            throw new Error("Failed to mark all notifications as read");
+
+          markAllNotificationsReadInUI();
+        } catch (error) {
+          showStatus(
+            `Error marking all notifications as read: ${error.message}`,
+            "error"
+          );
+        }
+      }
+
+      function markNotificationReadInUI(notificationId) {
+        const notification = document.getElementById(
+          `notification-${notificationId}`
+        );
+        if (notification) {
+          notification.classList.remove("unread");
+          const actions = notification.querySelector(".notification-actions");
+          if (actions) actions.remove();
+        }
+      }
+
+      function markAllNotificationsReadInUI() {
+        document
+          .querySelectorAll(".notification-item.unread")
+          .forEach((notification) => {
+            notification.classList.remove("unread");
+            const actions = notification.querySelector(".notification-actions");
+            if (actions) actions.remove();
+          });
+      }
+
+      function setupUIForConnectedState() {
+        document.getElementById("connectBtn").disabled = true;
+        document.getElementById("disconnectBtn").disabled = false;
+        document.getElementById("token").disabled = true;
+        document.getElementById("notificationsPanel").style.display = "block";
+      }
+
+      function setupUIForDisconnectedState() {
+        document.getElementById("connectBtn").disabled = false;
+        document.getElementById("disconnectBtn").disabled = true;
+        document.getElementById("token").disabled = false;
+        document.getElementById("notificationsPanel").style.display = "none";
+      }
+
+      function showStatus(message, type = "success") {
+        const statusDiv = document.getElementById("connectionStatus");
+        statusDiv.textContent = message;
+        statusDiv.className = `status ${type}`;
+      }
+
+      function disconnect() {
+        if (socket) {
+          socket.disconnect();
+          socket = null;
+          currentUser = null;
+          setupUIForDisconnectedState();
+        }
+      }
+    </script>
+  </body>
+</html>

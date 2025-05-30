@@ -1,0 +1,264 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.notifications-list {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.notifications-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.notifications-list-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ff6a2b;
+  font-family: "Poppins", sans-serif;
+}
+
+.notifications-list-mark-all {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #ff6a2b;
+  background: rgba(255, 106, 43, 0.1);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.notifications-list-mark-all:hover {
+  background: rgba(255, 106, 43, 0.2);
+}
+
+.notifications-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.notification-item {
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+  border: 1px solid #f0f0f0;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.notification-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+}
+
+.notification-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #e5e7eb;
+  border-radius: 4px 0 0 4px;
+}
+
+/* Type-specific styles */
+.notification-item.type-post_reserved::before {
+  background: #ff6a2b;
+}
+
+.notification-item.type-new_message::before {
+  background: #3b82f6;
+}
+
+.notification-item.type-post_completed::before {
+  background: #10b981;
+}
+
+.notification-item.type-reservation_cancelled::before {
+  background: #ef4444;
+}
+
+.notification-item-unread {
+  background: rgba(255, 106, 43, 0.05);
+  border-color: rgba(255, 106, 43, 0.1);
+}
+
+.notification-item-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.notification-item-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  background: #f9fafb;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.type-post_reserved .notification-item-icon {
+  background: rgba(255, 106, 43, 0.1);
+  color: #ff6a2b;
+}
+
+.type-new_message .notification-item-icon {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.type-post_completed .notification-item-icon {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.type-reservation_cancelled .notification-item-icon {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.notification-item-details {
+  flex: 1;
+}
+
+.notification-item-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.notification-item-link {
+  color: #111827;
+  text-decoration: none;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.notification-item-link:hover {
+  color: #ff6a2b;
+}
+
+.notification-item-username {
+  font-weight: 600;
+  color: #ff6a2b;
+}
+
+.notification-item-message {
+  color: #4b5563;
+  font-size: 0.95rem;
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.notification-item-time {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.notifications-list-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.notifications-list-empty-icon {
+  font-size: 3.5rem;
+  color: #ff6a2b;
+  margin-bottom: 1.5rem;
+  animation: bellRing 2s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notifications-list-empty-text {
+  color: #374151;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(120deg, #ff6a2b 0%, #ff8f6b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.notifications-list-empty-subtext {
+  color: #6b7280;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  max-width: 300px;
+  line-height: 1.6;
+  animation: fadeInUp 0.6s ease-out 0.2s backwards;
+}
+
+@keyframes bellRing {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20%,
+  80% {
+    transform: rotate(-6deg);
+  }
+  40%,
+  60% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notifications-list-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+}
+
+.notifications-list-error {
+  background-color: #fef2f2;
+  border-left: 4px solid #f87171;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+}
+
+.notifications-list-error-text {
+  color: #b91c1c;
+  margin: 0;
+}

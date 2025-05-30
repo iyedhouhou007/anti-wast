@@ -67,7 +67,7 @@ npm install
 Start backend:
 ```bash
 cd server
-npm run dev
+npm start
 ```
 
 Start frontend:
@@ -76,7 +76,7 @@ cd ../client
 npm run dev
 ```
 
-Make sure MongoDB is running on your machine or configure your `.env` file.
+Make sure MongoDB is running on your machine and configure your `.env` file.
 
 ## 📬 API Documentation
 

@@ -1,3 +1,4 @@
+
 # Anti-Wast
 
 Anti-Wast is a full-stack MERN web platform designed to combat food waste by connecting individuals or businesses who have surplus food with recipients in need. The platform promotes sustainability by facilitating food sharing, community engagement, and reducing landfill waste.
@@ -23,13 +24,11 @@ Food waste is a growing global issue that affects both the environment and socie
 ## 📦 Project Structure
 
 ```
-
 anti-wast/
 ├── client/     # React frontend (designed by Seif Elisslem)
 ├── server/     # Node/Express backend (developed by Houhou Mohamed Iyad)
 └── README.md
-
-````
+```
 
 ## ✨ Features
 
@@ -61,19 +60,17 @@ npm install
 # Install frontend dependencies
 cd ../client
 npm install
-````
+```
 
 ### 🔧 Running the App
 
 Start backend:
-
 ```bash
 cd server
 npm run dev
 ```
 
 Start frontend:
-
 ```bash
 cd ../client
 npm run dev
@@ -85,31 +82,29 @@ Make sure MongoDB is running on your machine or configure your `.env` file.
 
 The backend API is documented using Swagger. To access the docs:
 
-* Start the backend server.
-* Navigate to `http://localhost:5000/api-docs` in your browser.
+- Start the backend server.
+- Navigate to `http://localhost:5000/api-docs` in your browser.
 
 ## 🤝 Credits
 
-* **Frontend Design:** Seif Elisslem
-* **Backend Development & Realtime Features:** Houhou Mohamed Iyad Abdelhadi
+- **Frontend Design:** Seif Elisslem  
+- **Backend Development & Realtime Features:** Houhou Mohamed Iyad Abdelhadi
 
 ## 🔒 Security & Best Practices
 
-* Passwords are hashed using `bcrypt`.
-* Auth tokens use `JWT`.
-* Inputs are validated to avoid injection attacks.
-* App is prepared for HTTPS deployment.
+- Passwords are hashed using `bcrypt`.
+- Auth tokens use `JWT`.
+- Inputs are validated to avoid injection attacks.
+- App is prepared for HTTPS deployment.
 
 ## 📈 Future Improvements
 
-* Mobile application version
-* Integration with local delivery services
-* Gamification and rewards system
-* Advanced analytics
-* Multi-language support
+- Mobile application version
+- Integration with local delivery services
+- Gamification and rewards system
+- Advanced analytics
+- Multi-language support
 
 ## 📃 License
 
 This project is currently not licensed. Contact the contributors for usage permissions.
-
-```

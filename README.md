@@ -1,4 +1,3 @@
-```markdown
 # Anti-Wast
 
 Anti-Wast is a full-stack MERN web platform designed to combat food waste by connecting individuals or businesses who have surplus food with recipients in need. The platform promotes sustainability by facilitating food sharing, community engagement, and reducing landfill waste.
@@ -113,15 +112,4 @@ The backend API is documented using Swagger. To access the docs:
 
 This project is currently not licensed. Contact the contributors for usage permissions.
 
-```
-
----
-
-Let me know if you want:
-- Markdown badges (e.g. `Made with React`, `Node.js`, `MongoDB`, etc.)
-- Screenshots added
-- French or Arabic translation
-- A GitHub Pages or deployment guide
-
-Happy to help!
 ```
